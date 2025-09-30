@@ -7,12 +7,11 @@ class FileRetriever
 {
     private String inputPath;
 
-
     public int[] getPixelsFromImage(String inputPath)
     {
         BufferedImage image = null;
 
-        try 
+        try
         {
             File imageFile = new File(inputPath);
             image = ImageIO.read(imageFile);
