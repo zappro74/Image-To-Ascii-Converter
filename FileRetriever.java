@@ -30,18 +30,18 @@ class FileRetriever
             System.out.println("Image loaded successfully!");
             return true;
         }
-        catch (IOExeption e)
+        catch (IOException e)
         {
             System.out.println("Error loading image: " + e.getMessage());
             return false;
         }
     }
 
-    public int[] getPixelsFromImage(String inputPath)
+    public int[] getPixelsFromImage()
     {
         if (image == null)
         {
-            System.out.println("No image loaded. Call loadImage() first.");
+            throw new IllegalStateException("No image loaded");
         }
 
         int width = image.getWidth();
