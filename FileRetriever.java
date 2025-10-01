@@ -6,6 +6,12 @@ import javax.imageio.ImageIO;
 class FileRetriever
 {
     private String inputPath;
+    private BufferedImage image;
+
+    public FileRetriever(String inputPath)
+    {
+        this.inputPath = inputPath;
+    }
 
     public int[] getPixelsFromImage(String inputPath)
     {
