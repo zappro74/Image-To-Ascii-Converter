@@ -19,25 +19,19 @@ class FileRetriever
         this.imageFile = new File(inputPath);
     }
 
-    public boolean loadImage()
+    public void loadImage() 
     {
-        try
+        try 
         {
             image = ImageIO.read(imageFile);
-
-            if (image == null)
+            if (image == null) 
             {
-                System.out.println("Invalid image format or file not found.");
-                return false;
+                throw new IllegalArgumentException("Unsupported or empty image: " + inputPath);
             }
-
-            System.out.println("Image loaded successfully!");
-            return true;
-        }
-        catch (IOException e)
+        } 
+        catch (IOException e) 
         {
-            System.out.println("Error loading image: " + e.getMessage());
-            return false;
+            throw new RuntimeException("Failed to load image at " + inputPath, e);
         }
     }
 
