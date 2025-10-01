@@ -11,14 +11,18 @@ class FileRetriever
 
     public FileRetriever(String inputPath)
     {
+        if (inputPath == null || inputPath.isBlank())
+        {
+            throw new IllegalArgumentException("Input path cannot be null or blank");
+        }
         this.inputPath = inputPath;
+        this.imageFile = new File(inputPath);
     }
 
     public boolean loadImage()
     {
         try
         {
-            imageFile = new File(inputPath);
             image = ImageIO.read(imageFile);
 
             if (image == null)
