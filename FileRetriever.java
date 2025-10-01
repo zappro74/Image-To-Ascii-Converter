@@ -39,25 +39,9 @@ class FileRetriever
 
     public int[] getPixelsFromImage(String inputPath)
     {
-        BufferedImage image = null;
-
-        try
+        if (image == null)
         {
-            File imageFile = new File(inputPath);
-            image = ImageIO.read(imageFile);
-
-            if (image == null) 
-            {
-                System.out.println("Invalid image format or file not found.");
-                return null;
-            }
-
-            System.out.println("Image loaded successfully!");
-        } 
-        catch (IOException e) 
-        {
-            System.out.println("Error loading image: " + e.getMessage());
-            return null;
+            System.out.println("No image loaded. Call loadImage() first.");
         }
 
         int width = image.getWidth();
