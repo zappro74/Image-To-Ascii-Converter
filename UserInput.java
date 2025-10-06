@@ -17,6 +17,7 @@ class UserInput
             System.out.println("2) Large - more detail (160 characters wide)");
             System.out.println("3) Extra Large - high detail (200 characters wide)");
             System.out.println("4) Ultra Large - max detail (240 characters wide)");
+            System.out.println("5) Exit Program - :(");
             userChoice = input.nextLine();
             
             switch(userChoice.toUpperCase())
@@ -41,6 +42,10 @@ class UserInput
                     choiceIsValid = true;
                     userChoiceValue = 240;
                     break;
+                case "5":
+                case "EXIT":
+                    System.out.println("Bye :(");
+                    System.exit(0);
             }
         }
         input.close();
