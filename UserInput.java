@@ -2,12 +2,13 @@ import java.util.Scanner;
 
 class UserInput
 {
-    private static String userInput;
+    private static String userChoice;
+    private static int userChoiceValue = 160;
     private static boolean choiceIsValid;
-    private static Scanner input = new Scanner(System.in);
 
     public static int requestImageWidth()
     {
+        Scanner input = new Scanner(System.in);
         choiceIsValid = false;
         while (!choiceIsValid)
         {
@@ -16,29 +17,33 @@ class UserInput
             System.out.println("2) Large - more detail (160 characters wide)");
             System.out.println("3) Extra Large - high detail (200 characters wide)");
             System.out.println("4) Ultra Large - max detail (240 characters wide)");
-            userInput = input.nextLine();
+            userChoice = input.nextLine();
             
-            switch(userInput.toUpperCase())
+            switch(userChoice.toUpperCase())
             {
                 case "1":
                 case "MEDIUM":
                     choiceIsValid = true;
-                    return 120;
+                    userChoiceValue = 120;
+                    break;
                 case "2":
                 case "LARGE":
-                case "":
                     choiceIsValid = true;
-                    return 160;
+                    userChoiceValue = 160;
+                    break;
                 case "3":
                 case "EXTRA LARGE":
                     choiceIsValid = true;
-                    return 200;
+                    userChoiceValue = 200;
+                    break;
                 case "4":
                 case "ULTRA LARGE":
                     choiceIsValid = true;
-                    return 240;
+                    userChoiceValue = 240;
+                    break;
             }
         }
-        return 300;
+        input.close();
+        return userChoiceValue;
     }
 }
