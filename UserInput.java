@@ -2,9 +2,15 @@ import java.util.Scanner;
 
 class UserInput
 {
-    private static String userChoice;
-    private static int userChoiceValue = 160;
-    private static boolean choiceIsValid;
+    private static String filePath = null;
+    private static String widthChoice;
+    private static int width = 160;
+    private static boolean choiceIsValid = false;
+
+    public static String requestFilePath()
+    {
+
+    }
 
     public static int requestImageWidth()
     {
@@ -12,35 +18,35 @@ class UserInput
         choiceIsValid = false;
         while (!choiceIsValid)
         {
-            System.out.println("Enter prefered image width (Press enter for default):");
+            System.out.println("Enter prefered image width (Press enter for default): ");
             System.out.println("1) Medium - fits most screens (120 characters wide)");
             System.out.println("2) Large - more detail (160 characters wide)");
             System.out.println("3) Extra Large - high detail (200 characters wide)");
             System.out.println("4) Ultra Large - max detail (240 characters wide)");
             System.out.println("5) Exit Program - :(");
-            userChoice = input.nextLine();
+            widthChoice = input.nextLine();
             
-            switch(userChoice.toUpperCase())
+            switch(widthChoice.toUpperCase())
             {
                 case "1":
                 case "MEDIUM":
                     choiceIsValid = true;
-                    userChoiceValue = 120;
+                    width = 120;
                     break;
                 case "2":
                 case "LARGE":
                     choiceIsValid = true;
-                    userChoiceValue = 160;
+                    width = 160;
                     break;
                 case "3":
                 case "EXTRA LARGE":
                     choiceIsValid = true;
-                    userChoiceValue = 200;
+                    width = 200;
                     break;
                 case "4":
                 case "ULTRA LARGE":
                     choiceIsValid = true;
-                    userChoiceValue = 240;
+                    width = 240;
                     break;
                 case "5":
                 case "EXIT":
@@ -49,6 +55,6 @@ class UserInput
             }
         }
         input.close();
-        return userChoiceValue;
+        return width;
     }
 }
