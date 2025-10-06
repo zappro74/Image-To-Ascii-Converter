@@ -1,15 +1,34 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 class UserInput
 {
-    private static String filePath = null;
+    private static String path = null;
     private static String widthChoice;
     private static int width = 160;
     private static boolean choiceIsValid = false;
+    private static File file;
 
-    public static String requestFilePath()
+    public static File requestFile() throws FileNotFoundException
     {
+        System.out.println("Enter the file name of the image you would like to convert to ASCII: ");
+        System.out.println("*Make sure the image is in the same directory as this program*");
 
+        Scanner input = new Scanner(System.in);
+        path = input.nextLine();
+        if (path == null || path.isBlank())
+        {
+            throw new IllegalArgumentException("File path cannot be null or blank");
+        }
+        file = new File(path);
+
+        if (!file.exists())
+        {
+            throw new FileNotFoundException("File not found in current directory: " + path);
+        }
+
+        return file;
     }
 
     public static int requestImageWidth()
@@ -56,5 +75,15 @@ class UserInput
         }
         input.close();
         return width;
+    }
+
+    public static File getFile()
+    {
+        return file;
+    }
+
+    public static String getPath()
+    {
+        return path;
     }
 }
