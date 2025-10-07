@@ -26,7 +26,7 @@ class ImageLoader
         }
     }
 
-    public static void CalculatePixels()
+    public static void calculatePixels()
     {
         if (image == null)
         {
