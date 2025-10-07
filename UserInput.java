@@ -28,6 +28,7 @@ class UserInput
             throw new FileNotFoundException("File not found in current directory: " + path);
         }
 
+        input.close();
         return file;
     }
 
