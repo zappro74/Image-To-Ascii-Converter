@@ -8,6 +8,7 @@ class ImageLoader
     private static String path = UserInput.getPath();
     private static BufferedImage image;
     private static File file = UserInput.getFile();
+    private static int[][] pixels;
 
     public static void loadImage() 
     {
@@ -25,7 +26,7 @@ class ImageLoader
         }
     }
 
-    public static int[] getPixelsFromImage()
+    public static void CalculatePixels()
     {
         if (image == null)
         {
@@ -34,10 +35,13 @@ class ImageLoader
 
         int width = image.getWidth();
         int height = image.getHeight();
-        int[] pixels = new int[width * height];
+        pixels = new int[width * height];
 
         image.getRGB(0, 0, width, height, pixels, 0, width);
+    }
 
+    public static int[][] getPixels()
+    {
         return pixels;
     }
 }
