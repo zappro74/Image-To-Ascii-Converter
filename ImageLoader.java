@@ -7,6 +7,8 @@ class ImageLoader
 {
     private static String path = UserInput.getPath();
     private static BufferedImage image;
+    private static int width;
+    private static int height;
     private static File file = UserInput.getFile();
     private static int[][] pixels;
 
@@ -33,8 +35,8 @@ class ImageLoader
             throw new IllegalStateException("No image loaded");
         }
 
-        int width = image.getWidth();
-        int height = image.getHeight();
+        width = image.getWidth();
+        height = image.getHeight();
         pixels = new int[height][width];
 
         for (int y = 0; y < height; y++)
@@ -54,5 +56,15 @@ class ImageLoader
     public static BufferedImage getImage()
     {
         return image;
+    }
+
+    public static int getWidth()
+    {
+        return width;
+    }
+
+    public static int getHeight()
+    {
+        return height;
     }
 }
