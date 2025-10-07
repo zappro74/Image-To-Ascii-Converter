@@ -31,18 +31,23 @@ class UserInput
         return file;
     }
 
+    public static void displayOptions() //Ian Coopers fault...
+    {
+        System.out.println("Enter prefered image width (Press enter for default): ");
+        System.out.println("1) Medium - fits most screens (120 characters wide)");
+        System.out.println("2) Large - more detail (160 characters wide)");
+        System.out.println("3) Extra Large - high detail (200 characters wide)");
+        System.out.println("4) Ultra Large - max detail (240 characters wide)");
+        System.out.println("5) Exit Program - :(");
+    }
+
     public static int requestImageWidth()
     {
         Scanner input = new Scanner(System.in);
         choiceIsValid = false;
         while (!choiceIsValid)
         {
-            System.out.println("Enter prefered image width (Press enter for default): ");
-            System.out.println("1) Medium - fits most screens (120 characters wide)");
-            System.out.println("2) Large - more detail (160 characters wide)");
-            System.out.println("3) Extra Large - high detail (200 characters wide)");
-            System.out.println("4) Ultra Large - max detail (240 characters wide)");
-            System.out.println("5) Exit Program - :(");
+            displayOptions();
             widthChoice = input.nextLine();
             
             switch(widthChoice.toUpperCase())
