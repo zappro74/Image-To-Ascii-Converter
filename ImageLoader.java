@@ -50,4 +50,9 @@ class ImageLoader
     {
         return pixels;
     }
+
+    public static BufferedImage getImage()
+    {
+        return image;
+    }
 }
