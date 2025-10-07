@@ -35,9 +35,15 @@ class ImageLoader
 
         int width = image.getWidth();
         int height = image.getHeight();
-        pixels = new int[width * height];
+        pixels = new int[height][width];
 
-        image.getRGB(0, 0, width, height, pixels, 0, width);
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                pixels[x][y] = image.getRGB(x, y);
+            }
+        }
     }
 
     public static int[][] getPixels()
