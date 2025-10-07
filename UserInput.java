@@ -92,4 +92,9 @@ class UserInput
     {
         return path;
     }
+
+    public static int getUserWidth()
+    {
+        return width;
+    }
 }
