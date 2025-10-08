@@ -93,7 +93,7 @@ class UserInput
         return path;
     }
 
-    public static int getUserWidth()
+    public static int getTargetWidth()
     {
         return width;
     }
