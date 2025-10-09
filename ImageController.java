@@ -6,8 +6,4 @@ class ImageController
     private static int originalSize = originalHeight * originalWidth;
     private static int userWidth = UserInput.getTargetWidth();
     
-    public static void convertPixels()
-    {
-        
-    }
 }
