@@ -43,7 +43,15 @@ class ImageLoader
         {
             for (int x = 0; x < width; x++)
             {
-                pixels[y][x] = image.getRGB(x, y);
+                int rgb = image.getRGB(x, y);
+                
+                int red   = (rgb >> 16) & 0xFF;
+                int green = (rgb >> 8)  & 0xFF;
+                int blue  = rgb & 0xFF;
+
+                double luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+
+                pixels[y][x] = luminance
             }
         }
     }
