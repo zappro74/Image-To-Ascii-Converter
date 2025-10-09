@@ -5,6 +5,7 @@ import java.util.Scanner;
 class UserInput
 {
     private static String path = null;
+    private static String outputPath = null;
     private static String widthChoice;
     private static int width = 160;
     private static boolean choiceIsValid = false;
@@ -85,7 +86,9 @@ class UserInput
 
     public static void requestFileOutput()
     {
-        
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the path of the directory you want to output the converted image to (Press enter for default (current directory)): ");
+        System.out.println("Enter what you want the converted image to be named");
     }
 
     public static File getFile()
