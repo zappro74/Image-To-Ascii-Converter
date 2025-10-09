@@ -43,7 +43,7 @@ class ImageLoader
         {
             for (int x = 0; x < width; x++)
             {
-                pixels[x][y] = image.getRGB(x, y);
+                pixels[y][x] = image.getRGB(x, y);
             }
         }
     }
