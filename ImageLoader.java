@@ -51,7 +51,7 @@ class ImageLoader
 
                 double luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
 
-                pixels[y][x] = luminance
+                pixels[y][x] = luminance;
             }
         }
     }
