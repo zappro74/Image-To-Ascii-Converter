@@ -10,11 +10,11 @@ class ImageLoader
     private static int width;
     private static int height;
     private static File file = UserInput.getFile();
-    private static int[][] pixels;
+    private static double[][] pixels;
 
-    public static void loadImage() 
+    public static BufferedImage loadImage() 
     {
-        try 
+        try
         {
             image = ImageIO.read(file);
             if (image == null) 
@@ -26,9 +26,11 @@ class ImageLoader
         {
             throw new RuntimeException("Failed to load image at " + path, e);
         }
+
+        return image;
     }
 
-    public static void calculatePixels()
+    public static double[][] calculatePixels(BufferedImage image)
     {
         if (image == null)
         {
@@ -37,7 +39,7 @@ class ImageLoader
 
         width = image.getWidth();
         height = image.getHeight();
-        pixels = new int[height][width];
+        pixels = new double[height][width];
 
         for (int y = 0; y < height; y++)
         {
@@ -54,16 +56,7 @@ class ImageLoader
                 pixels[y][x] = luminance;
             }
         }
-    }
-
-    public static int[][] getPixels()
-    {
         return pixels;
-    }
-
-    public static BufferedImage getImage()
-    {
-        return image;
     }
 
     public static int getWidth()
