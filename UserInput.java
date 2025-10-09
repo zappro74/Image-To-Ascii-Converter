@@ -83,6 +83,11 @@ class UserInput
         return width;
     }
 
+    public static void requestFileOutput()
+    {
+        
+    }
+
     public static File getFile()
     {
         return file;
