@@ -5,26 +5,22 @@ import javax.imageio.ImageIO;
 
 class ImageLoader
 {
-    private static String path = UserInput.getPath();
-    private static BufferedImage image;
-    private static int width;
-    private static int height;
-    private static File file = UserInput.getFile();
     private static double[][] pixels;
 
-    public static BufferedImage loadImage() 
+    public static BufferedImage loadImage(File file) 
     {
+        BufferedImage image = null;
         try
         {
             image = ImageIO.read(file);
             if (image == null) 
             {
-                throw new IllegalArgumentException("Unsupported or empty image: " + path);
+                throw new IllegalArgumentException("Unsupported or empty image: " + file.getName());
             }
         } 
         catch (IOException e) 
         {
-            throw new RuntimeException("Failed to load image at " + path, e);
+            throw new RuntimeException("Failed to load image at " + file.getPath(), e);
         }
 
         return image;
@@ -37,8 +33,8 @@ class ImageLoader
             throw new IllegalStateException("No image loaded");
         }
 
-        width = image.getWidth();
-        height = image.getHeight();
+        int width = image.getWidth();
+        int height = image.getHeight();
         pixels = new double[height][width];
 
         for (int y = 0; y < height; y++)
@@ -57,15 +53,5 @@ class ImageLoader
             }
         }
         return pixels;
-    }
-
-    public static int getWidth()
-    {
-        return width;
-    }
-
-    public static int getHeight()
-    {
-        return height;
     }
 }
