@@ -6,13 +6,12 @@ class UserInput
 {
     private static final Scanner INPUT = new Scanner(System.in);
     private String path = null;
-    private static String outputPath = null;
-    private static String widthChoice;
+    private String outputPath = null;
     private int width = 160;
-    private static boolean choiceIsValid = false;
+    private boolean choiceIsValid = false;
     private File file;
 
-    public static File requestFile(String path, File file) throws FileNotFoundException
+    public File requestFile() throws FileNotFoundException
     {
         System.out.println("Enter the file name of the image you would like to convert to ASCII: ");
         System.out.println("*Make sure the image is in the same directory as this program*");
@@ -31,7 +30,7 @@ class UserInput
         return file;
     }
 
-    public static void displayOptions() //Ian Coopers fault...
+    public void displayOptions() //Ian Coopers fault...
     {
         System.out.println("Enter prefered image width (Press enter for default): ");
         System.out.println("1) Medium - fits most screens (120 characters wide)");
@@ -41,13 +40,13 @@ class UserInput
         System.out.println("5) Exit Program - :(");
     }
 
-    public static int requestImageWidth(int width)
+    public int requestImageWidth()
     {
         choiceIsValid = false;
         while (!choiceIsValid)
         {
             displayOptions();
-            widthChoice = INPUT.nextLine();
+            String widthChoice = INPUT.nextLine();
             
             switch(widthChoice.toUpperCase())
             {
@@ -76,11 +75,13 @@ class UserInput
                     System.out.println("Bye :(");
                     System.exit(0);
             }
+            System.out.println("Please enter a number which represents an output size: \n");
         }
+        System.out.println("Chosen width: " + width);
         return width;
     }
 
-    public static void requestFileOutput()
+    public void requestFileOutput()
     {
         System.out.println("Enter the path of the directory you want to output the converted image to (Press enter for default (current directory)): ");
         System.out.println("Enter what you want the converted image to be named");
