@@ -2,17 +2,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-class UserINPUT
+class UserInput
 {
     private static final Scanner INPUT = new Scanner(System.in);
-    private static String path = null;
+    private String path = null;
     private static String outputPath = null;
     private static String widthChoice;
-    private static int width = 160;
+    private int width = 160;
     private static boolean choiceIsValid = false;
-    private static File file;
+    private File file;
 
-    public static File requestFile() throws FileNotFoundException
+    public static File requestFile(String path, File file) throws FileNotFoundException
     {
         System.out.println("Enter the file name of the image you would like to convert to ASCII: ");
         System.out.println("*Make sure the image is in the same directory as this program*");
@@ -41,7 +41,7 @@ class UserINPUT
         System.out.println("5) Exit Program - :(");
     }
 
-    public static int requestImageWidth()
+    public static int requestImageWidth(int width)
     {
         choiceIsValid = false;
         while (!choiceIsValid)
@@ -86,17 +86,17 @@ class UserINPUT
         System.out.println("Enter what you want the converted image to be named");
     }
 
-    public static File getFile()
+    public File getFile()
     {
         return file;
     }
 
-    public static String getPath()
+    public String getPath()
     {
         return path;
     }
 
-    public static int getTargetWidth()
+    public int getTargetWidth()
     {
         return width;
     }
