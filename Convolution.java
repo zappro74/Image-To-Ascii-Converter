@@ -1,6 +1,6 @@
 class Convolution
 {
-    private static int[][] originalPixels = ImageLoader.getPixels();
+    private static double[][] originalPixels = ImageLoader.calculatePixels(ImageLoader.loadImage());
     private static int originalHeight = ImageLoader.getHeight();
     private static int originalWidth = ImageLoader.getWidth();
     private static int targetWidth = UserInput.getTargetWidth();
