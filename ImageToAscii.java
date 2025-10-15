@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 class ImageToAscii
 {
@@ -5,6 +6,7 @@ class ImageToAscii
 
     public static void toAsciiLines(double[][] brightness)
     {
-
+        ArrayList<String> lines = new ArrayList<>();
+        
     }
 }
