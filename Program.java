@@ -13,10 +13,11 @@ class Program
         {
             File file = user.requestFile();
             BufferedImage image = ImageLoader.loadImage(file);
-            double[][] brightness = ImageLoader.calculatePixels(image);
-
             System.out.println("Image processed successfully!");
             System.out.println("Image (Pre-conversion) dimensions: " + image.getWidth() + "x" + image.getHeight());
+            
+            double[][] brightness = ImageLoader.calculatePixels(image);
+            double[][] resized = ImageController.resizeOutput(image, brightness, user.requestImageWidth());
         }
         catch (FileNotFoundException e) 
         {
