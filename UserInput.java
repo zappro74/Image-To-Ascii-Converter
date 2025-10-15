@@ -13,8 +13,7 @@ class UserInput
 
     public File requestFile() throws FileNotFoundException
     {
-        System.out.println("Enter the file name of the image you would like to convert to ASCII: ");
-        System.out.println("*Make sure the image is in the same directory as this program*");
+        System.out.println("Enter the file path of the image you would like to convert to ASCII: ");
 
         path = INPUT.nextLine();
         if (path == null || path.isBlank())
