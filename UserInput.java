@@ -122,12 +122,12 @@ class UserInput
 
     private void requestFileName()
     {
-        System.out.println("Enter what you want this text file to be named: ");
+        System.out.println("Enter the directory (including file name) that you would like to save this file to:  (Example: C:\\Users\\<user>\\Desktop\\output.txt): ");
         outputFileName = INPUT.nextLine().trim();
 
         if (outputFileName.isEmpty())
         {
-            throw new IllegalArgumentException("File name cannot be empty.");
+            throw new IllegalArgumentException("File path cannot be empty.");
         }
 
         if (!outputFileName.toLowerCase().endsWith(".txt"))
@@ -135,9 +135,9 @@ class UserInput
             outputFileName += ".txt";
         }
 
-        if (!outputFileName.matches("^[\\w,\\s-]+\\.txt$"))
+        if (!outputFileName.matches("^[\\w,\\s-\\\\:\\.]+\\.txt$"))
         {
-            throw new IllegalArgumentException("File name contains invalid characters. Only letters, numbers, spaces, dashes, and underscores are allowed.");
+            throw new IllegalArgumentException("File name contains invalid characters. Only letters, numbers, slashes, spaces, dashes, and underscores are allowed.");
         }
 
         willSaveToFile = true;
@@ -158,9 +158,13 @@ class UserInput
     {
         return width;
     }
-    
-    public String getOutputFileName()
-    {
+
+    public String getOutputFileName() 
+    { 
+        if (!willSaveToFile || outputFileName == null || outputFileName.isBlank()) 
+        {
+            throw new IllegalStateException("Output file name not set. Call requestFileOutput() first and choose Yes.");
+        }
         return outputFileName;
     }
 }
