@@ -41,43 +41,47 @@ class UserInput
 
     public int requestImageWidth()
     {
-        choiceIsValid = false;
-        while (!choiceIsValid)
+        displayOptions();
+        String widthChoice = INPUT.nextLine();
+
+        try 
         {
-            displayOptions();
-            String widthChoice = INPUT.nextLine();
-            
-            switch(widthChoice.toUpperCase())
+            switch (widthChoice.toUpperCase()) 
             {
                 case "1":
                 case "MEDIUM":
-                    choiceIsValid = true;
                     width = 120;
                     break;
                 case "2":
                 case "LARGE":
-                    choiceIsValid = true;
                     width = 160;
                     break;
                 case "3":
                 case "EXTRA LARGE":
-                    choiceIsValid = true;
                     width = 200;
                     break;
                 case "4":
                 case "ULTRA LARGE":
-                    choiceIsValid = true;
                     width = 240;
                     break;
                 case "5":
                 case "EXIT":
                     System.out.println("Bye :(");
                     System.exit(0);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid choice: " + widthChoice);
             }
-            System.out.println("Please enter a number which represents an output size: \n");
+            System.out.println("Chosen width: " + width);
+            return width;
+
+        } 
+        catch (IllegalArgumentException e) 
+        {
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("Please enter a valid option (1-5 or name).");
+            return requestImageWidth();  //RECURSION!!!! :O
         }
-        System.out.println("Chosen width: " + width);
-        return width;
     }
 
     public void requestFileOutput()
