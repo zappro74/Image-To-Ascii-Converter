@@ -18,6 +18,9 @@ class ImageController
                 resizedPixels[y][x] = originalPixels[sourceY][sourceX];
             }
         }
+
+        System.out.println("Image (Converted) dimensions: " + targetWidth + "x" + targetHeight);
+
         return resizedPixels;
     }
 }
