@@ -2,11 +2,13 @@ import java.awt.image.BufferedImage;
 
 class ImageController
 {   
+    public static final double CHAR_ASPECT = 0.38; //for tinkering with image height size
+
     public static double[][] resizeOutput(BufferedImage image, double[][] originalPixels, int targetWidth)
     {
         int originalWidth = image.getWidth();
         int originalHeight = image.getHeight();
-        int targetHeight = (int) Math.max(1 , Math.round(targetWidth * ((double) originalHeight / originalWidth)));
+        int targetHeight = (int) Math.max(1 , Math.round(targetWidth * ((double) originalHeight / originalWidth) * CHAR_ASPECT));
         double[][] resizedPixels = new double[targetHeight][targetWidth];
 
         double scaleX = (double) originalWidth / targetWidth;
