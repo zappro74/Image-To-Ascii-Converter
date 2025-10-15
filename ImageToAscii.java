@@ -6,21 +6,22 @@ class ImageToAscii
 
     public static ArrayList<String> toAsciiLines(double[][] brightness)
     {
-        ArrayList<String> lines = new ArrayList<>();
+        ArrayList<String> lines = new ArrayList<>(brightness.length);
         String ramp = DEFAULT_RAMP;
 
         for (int y = 0; y < brightness.length; y++)
         {
-            String row = "";
+            StringBuilder row = new StringBuilder(brightness[0].length);
             for (int x = 0; x < brightness[0].length; x++)
             {
                 double value = brightness[y][x];
-                int index = (int) ((value / 225.0) * (ramp.length() - 1));
+                int index = (int) Math.round((value / 225.0) * (ramp.length() - 1));
+                index = Math.max(0, Math.min(index, ramp.length() - 1));
 
-                row += ramp.charAt(index);
+                row.append(ramp.charAt(index));
             }
-            
-            lines.add(row);
+
+            lines.add(row.toString());
         }
 
         return lines;
