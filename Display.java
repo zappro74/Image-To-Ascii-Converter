@@ -9,4 +9,9 @@ class Display
             System.out.println(lines.get(i));
         }
     }
+
+    public static void saveToTxtFile(ArrayList<String> lines)
+    {
+        
+    }
 }
