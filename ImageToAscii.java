@@ -15,7 +15,7 @@ class ImageToAscii
             for (int x = 0; x < brightness[0].length; x++)
             {
                 double value = brightness[y][x];
-                int index = (int) Math.round((value / 225.0) * (ramp.length() - 1));
+                int index = (int) Math.round((value / 255.0) * (ramp.length() - 1));
                 index = Math.max(0, Math.min(index, ramp.length() - 1));
 
                 row.append(ramp.charAt(index));
