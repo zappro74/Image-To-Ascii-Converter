@@ -10,6 +10,8 @@ class UserInput
     private int width = 160;
     private boolean choiceIsValid = false;
     private File file;
+    private String outputFileName;
+    private boolean willSaveToFile;
 
     public File requestFile() throws FileNotFoundException
     {
@@ -29,10 +31,9 @@ class UserInput
         return file;
     }
 
-    public void displayOptions() //Ian Coopers fault...
+    private void displayOptions() //Ian Coopers fault...
     {
         System.out.println("Enter prefered image width (Press enter for default): ");
-        System.out.println("0) Print to console - fits in colsole (80 characters wide)");
         System.out.println("1) Medium - fits most screens (120 characters wide)");
         System.out.println("2) Large - more detail (160 characters wide)");
         System.out.println("3) Extra Large - high detail (200 characters wide)");
@@ -49,7 +50,7 @@ class UserInput
         {
             switch (widthChoice.toUpperCase()) 
             {
-                case "0":
+                case "0": //testing purposes
                     width = 80;
                     break;
                 case "1":
@@ -88,10 +89,59 @@ class UserInput
         }
     }
 
-    public void requestFileOutput()
+    public boolean requestFileOutput()
     {
-        System.out.println("Enter the path of the directory you want to output the converted image to (Press enter for default (current directory)): ");
-        System.out.println("Enter what you want the converted image to be named");
+        System.out.println("Do you want the output to be saved to a .txt(text) file? (Reccomended for larger images)");
+        System.out.println("Yes or No?");
+        String choice = INPUT.nextLine();
+        try
+        {
+            switch (choice.toUpperCase())
+            {
+                case "Y":
+                case "YES":
+                    requestFileName();
+                    break;
+                case "N":
+                case "No":
+                    willSaveToFile = false;
+                    System.out.println("The image will be displayed in the console.");
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid choice: " + choice);
+            }
+        }
+        catch (IllegalArgumentException e)
+        {
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("Please enter a valid option (y, yes, n, no)");
+            return requestFileOutput();
+        }
+        return willSaveToFile;
+    }
+
+    private void requestFileName()
+    {
+        System.out.println("Enter what you want this text file to be named: ");
+        outputFileName = INPUT.nextLine().trim();
+
+        if (outputFileName.isEmpty())
+        {
+            throw new IllegalArgumentException("File name cannot be empty.");
+        }
+
+        if (!outputFileName.toLowerCase().endsWith(".txt"))
+        {
+            outputFileName += ".txt";
+        }
+
+        if (!outputFileName.matches("^[\\w,\\s-]+\\.txt$"))
+        {
+            throw new IllegalArgumentException("File name contains invalid characters. Only letters, numbers, spaces, dashes, and underscores are allowed.");
+        }
+
+        willSaveToFile = true;
+        System.out.println("Output will be saved as: " + outputFileName);
     }
 
     public File getFile()
@@ -107,5 +157,10 @@ class UserInput
     public int getTargetWidth()
     {
         return width;
+    }
+    
+    public String getOutputFileName()
+    {
+        return outputFileName;
     }
 }
