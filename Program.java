@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 
 class Program
 {
-    UserInput user = new UserInput();
+    private UserInput user = new UserInput();
     
     public void run() 
     {
@@ -16,11 +16,15 @@ class Program
             double[][] brightness = ImageLoader.calculatePixels(image);
 
             System.out.println("Image processed successfully!");
-            System.out.println("Pre-configured dimensions: " + image.getWidth() + "x" + image.getHeight());
-        } 
+            System.out.println("Image (Pre-conversion) dimensions: " + image.getWidth() + "x" + image.getHeight());
+        }
         catch (FileNotFoundException e) 
         {
             System.out.println("Error: " + e.getMessage());
+        }
+        catch (RuntimeException e)
+        {
+            System.out.println("Error processing image: " + e.getMessage());
         }
     }
 }
