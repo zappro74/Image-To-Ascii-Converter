@@ -1,10 +1,9 @@
-import java.util.ArrayList;
 
 class ImageToAscii
 {
-    private static final String CHAR_RAMP = "@%#*+=-:.";
+    private static final String DEFAULT_RAMP = "@%#*+=-:.";
 
-    public static ArrayList<String> toAsciiLines(double[][] brightness)
+    public static void toAsciiLines(double[][] brightness)
     {
 
     }
