@@ -32,6 +32,7 @@ class UserInput
     public void displayOptions() //Ian Coopers fault...
     {
         System.out.println("Enter prefered image width (Press enter for default): ");
+        System.out.println("0) Print to console - fits in colsole (80 characters wide)");
         System.out.println("1) Medium - fits most screens (120 characters wide)");
         System.out.println("2) Large - more detail (160 characters wide)");
         System.out.println("3) Extra Large - high detail (200 characters wide)");
@@ -48,6 +49,9 @@ class UserInput
         {
             switch (widthChoice.toUpperCase()) 
             {
+                case "0":
+                    width = 80;
+                    break;
                 case "1":
                 case "MEDIUM":
                     width = 120;
