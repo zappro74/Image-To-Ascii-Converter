@@ -19,6 +19,13 @@ class Program
             double[][] brightness = ImageLoader.calculatePixels(image);
             double[][] resizedBrightness = ImageController.resizeOutput(image, brightness, user.requestImageWidth());
 
+            boolean willSave = user.requestFileOutput();
+            
+            if (willSave)
+            {
+                Display.saveToTxtFile(ImageToAscii.toAsciiLines(resizedBrightness), user.getOutputFileName());
+            }
+
             Display.printToConsole(ImageToAscii.toAsciiLines(resizedBrightness));
         }
         catch (FileNotFoundException e) 
