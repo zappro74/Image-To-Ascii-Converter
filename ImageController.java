@@ -1,14 +1,14 @@
+import java.awt.image.BufferedImage;
+
 class ImageController
-{
-    private static double[][] originalPixels = ImageLoader.calculatePixels(ImageLoader.loadImage());
-    private static int originalHeight = ImageLoader.getHeight();
-    private static int originalWidth = ImageLoader.getWidth();
-    private static int targetWidth = UserInput.getTargetWidth();
-    private static int targetHeight = (int) (targetWidth * ((double) originalHeight / originalWidth));
-    private static double[][] resizedPixels = new double[targetHeight][targetWidth];
-    
-    public static double[][] resizeOutput()
+{   
+    public static double[][] resizeOutput(BufferedImage image, double[][] originalPixels, int targetWidth)
     {
+        int originalWidth = image.getWidth();
+        int originalHeight = image.getHeight();
+        int targetHeight = (int) (targetWidth * ((double) originalHeight / originalWidth));
+        double[][] resizedPixels = new double[targetHeight][targetWidth];
+
         for (int y = 0; y < targetHeight; y++)
         {
             for (int x = 0; x < targetWidth; x++)
