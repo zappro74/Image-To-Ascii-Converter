@@ -148,7 +148,7 @@ class UserInput
         willSaveToFile = true;
         System.out.println("Output will be saved as: " + outputFileName);
     }
-    
+
     public String getOutputFileName() 
     { 
         if (!willSaveToFile || outputFileName == null || outputFileName.isBlank()) 
@@ -156,5 +156,45 @@ class UserInput
             throw new IllegalStateException("Output file name not set. Call requestFileOutput() first and choose Yes.");
         }
         return outputFileName;
+    }
+
+    public String requestRampType()
+    {
+        System.out.println("Choose a character ramp type (Enter the name): ");
+        System.out.println("1) Simple (Default) - @%#*+=-:. ");
+        System.out.println("2) Light mode - .:-=+*#%@ ");
+        System.out.println("3) Dense - $@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,\"^`'. ");
+        String rampChoice = INPUT.nextLine();
+
+        try 
+        {
+            switch (rampChoice.toUpperCase()) 
+            {
+                case "1":
+                case "SIMPLE":
+                    rampChoice = "DEFAULT";
+                    break;
+                case "2":
+                case "LIGHT MODE":
+                case "LIGHT":
+                    rampChoice = "LIGHT";
+                    break;
+                case "3":
+                case "DENSE":
+                    rampChoice = "DENSE";
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid choice: " + rampChoice);
+            }
+            System.out.println("Chosen ramp: " + rampChoice);
+            return rampChoice;
+
+        } 
+        catch (IllegalArgumentException e) 
+        {
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("Please enter a valid option (1-3 or name).");
+            return requestRampType();
+        }
     }
 }
