@@ -15,7 +15,7 @@ class UserInput
 
     public UserInput()
     {
-        
+
     }
 
     public File requestFile() throws FileNotFoundException
@@ -110,7 +110,7 @@ class UserInput
                 case "N":
                 case "No":
                     willSaveToFile = false;
-                    System.out.println("The image will be displayed in the console.");
+                    System.out.println("The image will only be displayed in the console.");
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid choice: " + choice);
@@ -148,22 +148,7 @@ class UserInput
         willSaveToFile = true;
         System.out.println("Output will be saved as: " + outputFileName);
     }
-
-    public File getFile()
-    {
-        return file;
-    }
-
-    public String getPath()
-    {
-        return path;
-    }
-
-    public int getTargetWidth()
-    {
-        return width;
-    }
-
+    
     public String getOutputFileName() 
     { 
         if (!willSaveToFile || outputFileName == null || outputFileName.isBlank()) 
