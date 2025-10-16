@@ -50,7 +50,7 @@ class Program
         try 
         {
             Desktop desktop = Desktop.getDesktop();
-            File errorGif = new File("sorry.gif");
+            File errorGif = new File("gifThatDisplaysOnExceptionThrow.gif");
             if (errorGif.exists()) 
             {
                 desktop.open(errorGif);
