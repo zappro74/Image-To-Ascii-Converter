@@ -19,14 +19,16 @@ class Program
             double[][] brightness = ImageLoader.calculatePixels(image);
             double[][] resizedBrightness = ImageController.resizeOutput(image, brightness, user.requestImageWidth());
 
+            double[][] ditheredBrightness = ImageController.ditherOutput(resizedBrightness, 9);
+
             boolean willSave = user.requestFileOutput();
             
             if (willSave)
             {
-                Display.saveToTxtFile(ImageToAscii.toAsciiLines(resizedBrightness), user.getOutputFileName());
+                Display.saveToTxtFile(ImageToAscii.toAsciiLines(ditheredBrightness), user.getOutputFileName());
             }
 
-            Display.printToConsole(ImageToAscii.toAsciiLines(resizedBrightness));
+            Display.printToConsole(ImageToAscii.toAsciiLines(ditheredBrightness));
         }
         catch (FileNotFoundException e) 
         {
