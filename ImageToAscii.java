@@ -3,11 +3,26 @@ import java.util.ArrayList;
 class ImageToAscii
 {
     private static final String DEFAULT_RAMP = "@%#*+=-:.";
+    private static final String LIGHT_RAMP = ".:-=+*#%@";
+    private static final String DENSE_RAMP = "$@B%8&WM#*oahkbdpqwmZ0OQLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'.";
 
-    public static ArrayList<String> toAsciiLines(double[][] brightness)
+    public static ArrayList<String> toAsciiLines(double[][] brightness, String rampChoice)
     {
         ArrayList<String> lines = new ArrayList<>(brightness.length);
-        String ramp = DEFAULT_RAMP;
+        String ramp;
+        switch (rampChoice.toUpperCase())
+        {
+            case "DEFAULT":
+                ramp = DEFAULT_RAMP;
+                break;
+            case "LIGHT":
+                ramp = LIGHT_RAMP;
+                break;
+            case "DENSE":
+            default:
+                ramp = DENSE_RAMP;
+                break;
+        }
 
         for (int y = 0; y < brightness.length; y++)
         {
