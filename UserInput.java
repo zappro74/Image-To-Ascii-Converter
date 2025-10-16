@@ -166,7 +166,7 @@ class UserInput
         System.out.println("3) Dense - $@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,\"^`'. ");
         String rampChoice = INPUT.nextLine();
 
-        try 
+        try
         {
             switch (rampChoice.toUpperCase()) 
             {
