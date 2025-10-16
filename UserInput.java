@@ -158,7 +158,7 @@ class UserInput
         return outputFileName;
     }
 
-    public String requestRampType()
+    public String requestRampType() //Stretch goal 1
     {
         System.out.println("Choose a character ramp type (Enter the name): ");
         System.out.println("1) Simple (Default) - @%#*+=-:. ");
