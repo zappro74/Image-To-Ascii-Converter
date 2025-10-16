@@ -13,6 +13,11 @@ class UserInput
     private String outputFileName;
     private boolean willSaveToFile;
 
+    public UserInput()
+    {
+        
+    }
+
     public File requestFile() throws FileNotFoundException
     {
         System.out.println("Enter the file path of the image you would like to convert to ASCII: ");
