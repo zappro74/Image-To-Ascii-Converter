@@ -27,6 +27,7 @@ class ImageController
         return resizedPixels;
     }
 
+    //Stretch Goal 3
     public static double[][] ditherOutput(double[][] sourceBrightness, int numberOfLevels) //Refered to pseudocode from https://en.wikipedia.org/wiki/Floyd%E2%80%93Steinberg_dithering
     {
         int height = sourceBrightness.length;
