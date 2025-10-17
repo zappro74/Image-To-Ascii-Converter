@@ -46,16 +46,6 @@ class UserInput
         System.out.println("5) Exit Program - :(");
     }
 
-    private void displayRgbOptions()
-    {
-        System.out.println("Enter prefered image width: ");
-        System.out.println("0) Mini - originally for testing (80 characters wide)");
-        System.out.println("1) Medium - fits most screens (120 characters wide)");
-        System.out.println("2) Large - more detail (160 characters wide)");
-        System.out.println("3) Exit Program - :(");
-    }
-
-
     public int requestImageWidth()
     {
         displayOptions();
@@ -209,53 +199,12 @@ class UserInput
     }
 
     //Stretch goal 2
-    public int requestRgbWidth()
-    {
-        displayRgbOptions();
-        String widthChoice = INPUT.nextLine();
-
-        try 
-        {
-            switch (widthChoice.toUpperCase()) 
-            {
-                case "0": 
-                    width = 80;
-                    break;
-                case "1":
-                case "MEDIUM":
-                    width = 120;
-                    break;
-                case "2":
-                case "LARGE":
-                    width = 160;
-                    break;
-                case "3":
-                case "EXIT":
-                    System.out.println("Bye :(");
-                    System.exit(0);
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid choice: " + widthChoice);
-            }
-            System.out.println("Chosen width: " + width);
-            return width;
-
-        } 
-        catch (IllegalArgumentException e) 
-        {
-            System.out.println("Error: " + e.getMessage());
-            System.out.println("Please enter a valid option (1-5 or name).");
-            return requestRgbWidth();  //RECURSION!!!! :O
-        }
-    }
-
-    //Stretch goal 2
     public boolean requestColoredOutput()
     {
         System.out.println("\u001B[31mThis is a \u001B[0m \u001B[32mTEST to see \u001B[0m \u001B[34mif your console\u001B[0m");
         System.out.println("\u001B[38;2;255;128;0mcan print color\u001B[0m");
         System.out.println("Would you like the output to be colored? (Yes or No)");
-        System.out.println("*This will limit your output options*");
+        System.out.println("*If the test above does not show color select no*");
         String choice = INPUT.nextLine();
         boolean willColor = false;
 

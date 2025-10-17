@@ -18,16 +18,7 @@ class Program
             System.out.println("Image (Pre-conversion) dimensions: " + image.getWidth() + "x" + image.getHeight());
 
             boolean willColor = user.requestColoredOutput();
-            int targetWidth;
-
-            if (willColor) 
-            {
-                targetWidth = user.requestRgbWidth();
-            } 
-            else 
-            {
-                targetWidth = user.requestImageWidth();
-            }
+            int targetWidth = user.requestImageWidth();
 
             String rampChoice = user.requestRampType();
 
