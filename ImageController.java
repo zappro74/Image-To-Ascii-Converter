@@ -27,6 +27,31 @@ class ImageController
         return resizedPixels;
     }
 
+    //Stretch goal 2
+    public static double[][][] resizeRgb(double[][][] rgbPixels, int targetWidth) 
+    {
+        int originalHeight = rgbPixels.length;
+        int originalWidth = rgbPixels[0].length;
+        int targetHeight = (int) Math.max(1 , Math.round(targetWidth * ((double) originalHeight / originalWidth) * CHAR_ASPECT));
+        double[][][] resizedRgb = new double[targetHeight][targetWidth][3];
+        double scaleX = (double) originalWidth / targetWidth;
+        double scaleY = (double) originalHeight / targetHeight;
+
+        for (int y = 0; y < targetHeight; y++) 
+        {
+            for (int x = 0; x < targetWidth; x++) 
+            {
+                int sourceX = Math.min((int) (x * scaleX), originalWidth - 1);
+                int sourceY = Math.min((int) (y * scaleY), originalHeight - 1);
+                resizedRgb[y][x][0] = rgbPixels[sourceY][sourceX][0];
+                resizedRgb[y][x][1] = rgbPixels[sourceY][sourceX][1];
+                resizedRgb[y][x][2] = rgbPixels[sourceY][sourceX][2];
+            }
+        }
+        return resizedRgb;
+    }
+
+
     //Stretch Goal 3
     public static double[][] ditherOutput(double[][] sourceBrightness, int numberOfLevels) //Refered to pseudocode from https://en.wikipedia.org/wiki/Floyd%E2%80%93Steinberg_dithering
     {
@@ -76,17 +101,25 @@ class ImageController
 
                 double quantError = oldPixel - newPixel;
 
-                if (x + 1 < width)                    
+                if (x + 1 < width)
+                {       
                     ditheredBrightness[y][x + 1] += quantError * 7.0 / 16.0;
+                }
 
-                if (y + 1 < height && x - 1 >= 0)     
+                if (y + 1 < height && x - 1 >= 0)   
+                { 
                     ditheredBrightness[y + 1][x - 1] += quantError * 3.0 / 16.0;
+                }
 
-                if (y + 1 < height)                   
+                if (y + 1 < height)   
+                {              
                     ditheredBrightness[y + 1][x] += quantError * 5.0/16.0;
+                }
 
-                if (y + 1 < height && x + 1 < width)  
+                if (y + 1 < height && x + 1 < width) 
+                {
                     ditheredBrightness[y + 1][x + 1] += quantError * 1.0 / 16.0;
+                }
             }
         }
         return ditheredBrightness;

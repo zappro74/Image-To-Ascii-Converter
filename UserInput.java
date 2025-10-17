@@ -38,13 +38,23 @@ class UserInput
 
     private void displayOptions() //Ian Coopers fault...
     {
-        System.out.println("Enter prefered image width (Press enter for default): ");
+        System.out.println("Enter prefered image width: ");
         System.out.println("1) Medium - fits most screens (120 characters wide)");
         System.out.println("2) Large - more detail (160 characters wide)");
         System.out.println("3) Extra Large - high detail (200 characters wide)");
         System.out.println("4) Ultra Large - max detail (240 characters wide)");
         System.out.println("5) Exit Program - :(");
     }
+
+    private void displayRgbOptions()
+    {
+        System.out.println("Enter prefered image width: ");
+        System.out.println("0) Mini - originally for testing (80 characters wide)");
+        System.out.println("1) Medium - fits most screens (120 characters wide)");
+        System.out.println("2) Large - more detail (160 characters wide)");
+        System.out.println("3) Exit Program - :(");
+    }
+
 
     public int requestImageWidth()
     {
@@ -172,7 +182,7 @@ class UserInput
             {
                 case "1":
                 case "SIMPLE":
-                    rampChoice = "DEFAULT";
+                    rampChoice = "SIMPLE";
                     break;
                 case "2":
                 case "LIGHT MODE":
@@ -196,5 +206,67 @@ class UserInput
             System.out.println("Please enter a valid option (1-3 or name).");
             return requestRampType();
         }
+    }
+
+    //Stretch goal 2
+    public int requestRgbWidth()
+    {
+        displayRgbOptions();
+        String widthChoice = INPUT.nextLine();
+
+        try 
+        {
+            switch (widthChoice.toUpperCase()) 
+            {
+                case "0": 
+                    width = 80;
+                    break;
+                case "1":
+                case "MEDIUM":
+                    width = 120;
+                    break;
+                case "2":
+                case "LARGE":
+                    width = 160;
+                    break;
+                case "3":
+                case "EXIT":
+                    System.out.println("Bye :(");
+                    System.exit(0);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid choice: " + widthChoice);
+            }
+            System.out.println("Chosen width: " + width);
+            return width;
+
+        } 
+        catch (IllegalArgumentException e) 
+        {
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("Please enter a valid option (1-5 or name).");
+            return requestRgbWidth();  //RECURSION!!!! :O
+        }
+    }
+
+    //Stretch goal 2
+    public boolean requestColoredOutput()
+    {
+        System.out.println("Would you like the output to be colored? (Yes or No)");
+        System.out.println("*This will limit your output options*");
+        String choice = INPUT.nextLine();
+        boolean willColor = false;
+
+        switch (choice.toUpperCase())
+        {
+            case "Y":
+            case "YES":
+                willColor = true;
+                break;
+            case "N":
+            case "NO":
+                willColor = false;
+        }
+        return willColor;
     }
 }
