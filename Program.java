@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-
 class Program
 {
     private UserInput user = new UserInput();
@@ -18,19 +17,52 @@ class Program
             System.out.println("Image processed successfully!");
             System.out.println("Image (Pre-conversion) dimensions: " + image.getWidth() + "x" + image.getHeight());
 
-            double[][] brightness = ImageLoader.calculatePixels(image);
-            double[][] resizedBrightness = ImageController.resizeOutput(image, brightness, user.requestImageWidth());
+            boolean willColor = user.requestColoredOutput();
+            int targetWidth;
 
-            double[][] ditheredBrightness = ImageController.ditherOutput(resizedBrightness, 9); 
-
-            boolean willSave = user.requestFileOutput();
-            if (willSave)
+            if (willColor) 
             {
-                Display.saveToTxtFile(ImageToAscii.toAsciiLines(ditheredBrightness, user.requestRampType()), user.getOutputFileName());
+                targetWidth = user.requestRgbWidth();
+            } 
+            else 
+            {
+                targetWidth = user.requestImageWidth();
+            }
+
+            String rampChoice = user.requestRampType();
+
+            int numberOfLevels;
+            if (rampChoice.equals("DENSE"))
+            {
+                numberOfLevels = 71;
             }
             else
             {
-                Display.printToConsole(ImageToAscii.toAsciiLines(ditheredBrightness, user.requestRampType()));
+                numberOfLevels = 68;
+            }
+
+            double[][] brightness = ImageLoader.calculatePixels(image);
+            double[][] resizedBrightness = ImageController.resizeOutput(image, brightness, targetWidth);
+            double[][] ditheredBrightness = ImageController.ditherOutput(resizedBrightness, numberOfLevels);
+            
+            if (willColor) 
+            {
+                double[][][] rgbPixels = ImageLoader.calculateRgbPixels(image);
+                double[][][] resizedRgbPixels = ImageController.resizeRgb(rgbPixels, targetWidth);
+                Display.printToConsole(ImageToAscii.toAsciiLinesColored(ditheredBrightness, resizedRgbPixels, rampChoice));
+                return;
+            } 
+            else 
+            {
+                boolean willSave = user.requestFileOutput();
+                if (willSave) 
+                {
+                    Display.saveToTxtFile(ImageToAscii.toAsciiLines(ditheredBrightness, rampChoice), user.getOutputFileName());
+                } 
+                else 
+                {
+                    Display.printToConsole(ImageToAscii.toAsciiLines(ditheredBrightness, rampChoice));
+                }
             }
         }
         catch (FileNotFoundException e) 
@@ -64,6 +96,5 @@ class Program
         {
             System.out.println("Failed to open error GIF: " + ex.getMessage());
         }
-
     }
 }
