@@ -252,6 +252,8 @@ class UserInput
     //Stretch goal 2
     public boolean requestColoredOutput()
     {
+        System.out.println("\u001B[31mThis is a \u001B[0m \u001B[32mTEST to see \u001B[0m \u001B[34mif your console\u001B[0m");
+        System.out.println("\u001B[38;2;255;128;0mcan print color\u001B[0m");
         System.out.println("Would you like the output to be colored? (Yes or No)");
         System.out.println("*This will limit your output options*");
         String choice = INPUT.nextLine();

@@ -116,7 +116,8 @@ class ImageToAscii
                 int green = (int) Math.round(g);
                 int blue = (int) Math.round(b);
 
-                row.append("\u001B[38;2;").append(r).append(";").append(g).append(";").append(b).append("m").append(asciiChar).append("\u001B[0m");
+                //appended 'r' instead of the new 'red'... now it prints in color. RIP 10 points :( But hey, It works :)
+                row.append("\u001B[38;2;").append(red).append(";").append(green).append(";").append(blue).append("m").append(asciiChar).append("\u001B[0m");
                 }
 
             lines.add(row.toString());
